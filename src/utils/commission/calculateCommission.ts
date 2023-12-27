@@ -26,7 +26,7 @@ const defaultCommissionStructure: CommissionStructure = [
   },
 ];
 
-type CommissionBreakdown = {
+export type CommissionBreakdown = {
   band: number[];
   commissionValue: number;
 }[];
@@ -66,7 +66,7 @@ export const calculateCommission = (
     }
 
     // If revenue is greater than the value to reach the band maximum, add the full band amount to the breakdown
-    if (revenue > max) {
+    if (revenue >= max) {
       const amountInBand = max - min;
 
       commissionBreakdown.push({
