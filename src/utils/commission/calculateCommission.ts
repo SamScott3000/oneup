@@ -1,30 +1,7 @@
-type CommissionStructure = {
+export type CommissionStructure = {
   commissionPercentage: number;
   band: number[];
 }[];
-
-const defaultCommissionStructure: CommissionStructure = [
-  {
-    commissionPercentage: 0,
-    band: [0, 5000],
-  },
-  {
-    commissionPercentage: 10,
-    band: [5000, 10000],
-  },
-  {
-    commissionPercentage: 15,
-    band: [10000, 15000],
-  },
-  {
-    commissionPercentage: 20,
-    band: [15000, 20000],
-  },
-  {
-    commissionPercentage: 25,
-    band: [20000, Infinity],
-  },
-];
 
 export type CommissionBreakdown = {
   band: number[];
@@ -33,7 +10,7 @@ export type CommissionBreakdown = {
 
 export const calculateCommission = (
   revenue: number,
-  commissionStructure: CommissionStructure = defaultCommissionStructure
+  commissionStructure: CommissionStructure
 ) => {
   let commissionBreakdown: CommissionBreakdown = [];
 

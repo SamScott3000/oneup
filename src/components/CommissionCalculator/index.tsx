@@ -1,8 +1,34 @@
 "use client";
 
-import { calculateCommission } from "@/utils/commission/calculateCommission";
+import {
+  CommissionStructure,
+  calculateCommission,
+} from "@/utils/commission/calculateCommission";
 import { useState } from "react";
 import { CommissionBreakdown } from "./CommissionBreakdown";
+
+const defaultCommissionStructure: CommissionStructure = [
+  {
+    commissionPercentage: 0,
+    band: [0, 5000],
+  },
+  {
+    commissionPercentage: 10,
+    band: [5000, 10000],
+  },
+  {
+    commissionPercentage: 15,
+    band: [10000, 15000],
+  },
+  {
+    commissionPercentage: 20,
+    band: [15000, 20000],
+  },
+  {
+    commissionPercentage: 25,
+    band: [20000, Infinity],
+  },
+];
 
 export const CommissionCalculator = () => {
   const [revenue, setRevenue] = useState(0);
@@ -13,10 +39,12 @@ export const CommissionCalculator = () => {
     breakdown: [],
   });
 
-  const getCommission = (revenue: number) => {
-    const commission = calculateCommission(revenue);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value);
 
+    const commission = calculateCommission(value, defaultCommissionStructure);
     setCommission(commission);
+    setRevenue(value);
   };
 
   return (
@@ -30,18 +58,13 @@ export const CommissionCalculator = () => {
           className="border border-gray-300 rounded p-3.5 flex-1 font-semibold text-xl"
           type="number"
           value={revenue}
-          onChange={(e) => setRevenue(parseInt(e.target.value))}
+          onChange={(e) => handleInputChange(e)}
         />
-        <button
-          className="border border-gray-300 p-4 rounded-lg hover:bg-gray-100 transition-colors min-w-fit"
-          onClick={() => getCommission(revenue)}
-        >
-          Calculate Commission
-        </button>
       </div>
       <CommissionBreakdown
         total={commission.total}
         breakdown={commission.breakdown}
+        commissionStructure={defaultCommissionStructure}
       />
     </div>
   );
