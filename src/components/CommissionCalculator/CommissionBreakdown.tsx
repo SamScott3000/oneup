@@ -60,7 +60,7 @@ export const CommissionBreakdown = ({
                       backgroundColor: color,
                       marginTop: i * 28,
                     }}
-                    className="h-7 rounded flex items-center transition-all"
+                    className="h-7 rounded flex items-center transition-all animate-fadeIn"
                   >
                     <p className="px-4 font-semibold absolute right-0">
                       £{breakdownItem.commissionValue.toLocaleString()}
