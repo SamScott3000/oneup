@@ -73,15 +73,20 @@ export const CommissionCalculator = () => {
     <div className="p-6 border border-gray-300 rounded-xl shadow w-[700px] max-w-full">
       <h3 className="text-3xl font-bold mb-8">Commission Calculator</h3>
       <div className="flex gap-x-2 gap-y-2 justify-end items-center">
-        <div>
-          <p className="text-gray-300 font-semibold text-xl">£</p>
+        <p className="text-gray-300 font-semibold text-xl mt-6">£</p>
+        <div className="w-full flex-1 relative">
+          <label className="block font-semibold h-6" htmlFor="revenueInput">
+            Revenue
+          </label>
+          <input
+            className="border border-gray-300 rounded-lg p-3.5 flex-1 font-semibold text-xl w-full"
+            type="number"
+            id="revenueInput"
+            name="revenueInput"
+            value={revenue}
+            onChange={(e) => handleInputChange(e)}
+          />
         </div>
-        <input
-          className="border border-gray-300 rounded-lg p-3.5 flex-1 font-semibold text-xl w-0"
-          type="number"
-          value={revenue}
-          onChange={(e) => handleInputChange(e)}
-        />
       </div>
       <CommissionBreakdown
         total={commission.total}
