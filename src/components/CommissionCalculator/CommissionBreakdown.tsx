@@ -3,6 +3,7 @@ import {
   CommissionStructure,
 } from "@/utils/commission/calculateCommission";
 import React from "react";
+import CountUp from "react-countup";
 
 interface CommissionBreakdownProps {
   total: number;
@@ -24,7 +25,7 @@ export const CommissionBreakdown = ({
       <div>
         <p className="font-semibold mb-4">Total commission</p>
         <p className="text-4xl font-bold text-center">
-          £{total.toLocaleString()}
+          £<CountUp end={total} preserveValue />
         </p>
       </div>
 
@@ -63,7 +64,11 @@ export const CommissionBreakdown = ({
                     className="h-7 rounded flex items-center transition-all animate-fadeIn"
                   >
                     <p className="px-4 font-semibold absolute right-0">
-                      £{breakdownItem.commissionValue.toLocaleString()}
+                      £
+                      <CountUp
+                        end={breakdownItem.commissionValue}
+                        preserveValue
+                      />
                     </p>
                   </div>
                 );

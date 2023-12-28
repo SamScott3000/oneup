@@ -73,7 +73,7 @@ export const CommissionCalculator = () => {
     <div className="p-6 border border-gray-300 rounded-xl shadow w-[700px] max-w-full">
       <h3 className="text-3xl font-bold mb-8">Commission Calculator</h3>
       <div className="flex gap-x-2 gap-y-2 justify-end items-center flex-wrap">
-        <div className="">
+        <div>
           <p className="text-gray-300 font-semibold text-xl">£</p>
         </div>
         <input
